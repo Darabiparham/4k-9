@@ -388,16 +388,28 @@ canvas{display:block;width:100%;height:100%;touch-action:manipulation;object-fit
 .quick-action-btn-text{flex:1;text-align:left}
 .quick-action-btn-title{font-weight:600;font-size:1rem;margin-bottom:2px}
 .quick-action-btn-desc{font-size:0.8rem;opacity:0.7}
-.accordion-panel{position:fixed;bottom:calc(var(--footer-height) + var(--safe-area-bottom) + 20px);left:10px;right:10px;background:var(--panel-bg-light);backdrop-filter:blur(var(--glass-blur));-webkit-backdrop-filter:blur(var(--glass-blur));box-shadow:0 -8px 40px var(--shadow-color);transform:translateY(100%);transition:transform var(--transition-smooth),opacity var(--transition-smooth),visibility var(--transition-smooth);z-index:1800;max-height:calc(50vh - var(--footer-height) - 20px);overflow-y:auto;border-radius:20px;border:1px solid var(--border-color-light);opacity:0;visibility:hidden;will-change:transform,opacity}
+.accordion-panel {
+    position: fixed;
+    bottom: calc(var(--footer-height) + var(--safe-area-bottom) + 20px);
+    left: 10px;
+    right: 10px;
+    background: var(--panel-bg-light);
+    backdrop-filter: blur(var(--glass-blur));
+    -webkit-backdrop-filter: blur(var(--glass-blur));
+    box-shadow: 0 -8px 40px var(--shadow-color);
+    /* Changed back to transform */
+    transform: translateY(100%); 
+    transition: transform var(--transition-smooth), opacity var(--transition-smooth), visibility var(--transition-fast);
+    z-index: 1800;
+    max-height: calc(50vh - var(--footer-height) - 20px);
+    overflow-y: auto;
+    border-radius: 20px;
+    border: 1px solid var(--border-color-light);
+    opacity: 0;
+    visibility: hidden;
+    will-change: transform, opacity;
+}
 .accordion-panel.active{transform:translateY(0);opacity:1;visibility:visible}
-.panel-header{display:flex;justify-content:space-between;align-items:center;padding:16px 20px;border-bottom:1px solid var(--border-color-light);font-weight:700;font-size:1rem;position:sticky;top:0;background:var(--panel-bg-light);backdrop-filter:blur(var(--glass-blur));-webkit-backdrop-filter:blur(var(--glass-blur));z-index:10;border-radius:20px 20px 0 0}
-.layer-panel .panel-header{flex-shrink:0;border-radius:0;gap:8px;}
-.collapse-btn{width:50px;height:30px;border-radius:10px;background:rgba(255,255,255,0.1);border:1px solid var(--border-color-light);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all var(--transition-smooth);color:var(--text-color-light);flex-shrink:0;}
-.collapse-btn:hover{background:rgba(255,110,65,0.2);border-color:var(--orange-main);transform:scale(1.05);}
-.collapse-btn svg{width:30px;height:30px;transition:transform 0.3s ease;}
-.layer-panel.collapsed .collapse-btn svg{transform:rotate(180deg);}
-.close-panel{background:rgba(255,255,255,0.1);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid var(--border-color-light);font-size:1.5rem;cursor:pointer;color:var(--text-color-light);padding:6px 10px;border-radius:10px;transition:all var(--transition-smooth);width:36px;height:36px;display:flex;align-items:center;justify-content:center;outline:none}
-.close-panel:hover,.close-panel:focus{background:rgba(255,110,65,0.2);border-color:var(--orange-main)}
 .panel-content{padding:18px 20px;display:flex;flex-direction:column;gap:7px}
 
 /* Enhanced Color Tools Container */
@@ -705,7 +717,7 @@ body[data-lang="ar"] .color-tool-card .color-picker-info {
 .font-panel.selected{border-color:var(--green-main);background:rgba(27,59,20,0.15);box-shadow:0 0 20px rgba(27,59,20,0.2);border-style:dashed;transform:translateY(-2px)}
 .font-panel .font-text-input{flex:1;background:rgba(255,255,255,0.05);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid var(--border-color-light);color:var(--text-color-light);font-size:16px;padding:14px;resize:none;overflow-y:auto;min-height:35px;max-height:60px;line-height:1.4;font-family:inherit;word-wrap:break-word;transition:all 0.1s ease-out;border-radius:10px;text-align:center;display:flex;align-items:center;justify-content:center;outline:none}
 .font-panel .font-text-input::placeholder{color:rgba(255,255,255,0.7);text-align:center;font-size:14px}
-.font-panel .font-text-input:focus{border-color:var(--orange-main);background:rgba(255,255,255,0.1);text-align:left}
+.font-panel .font-text-input:focus{border-color:var(--orange-main);background:rgba(255,255,255,0.1);}
 .font-panel .remove-font{background:rgba(255,255,255,0.1);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);color:#ff6e41;border:1px solid rgba(0,0,0,0.15);width:30px;height:30px;border-radius:50%;cursor:pointer;font-size:20px;line-height:1;display:flex;align-items:center;justify-content:center;font-weight:bold;transition:all var(--transition-smooth);outline:none}
 .font-panel .remove-font:hover,.font-panel .remove-font:focus{background:rgba(255,68,68,0.25);border-color:#ff4444;transform:scale(1.1)}
 .add-font-panel-btn{background:rgba(255,110,65,0.2);backdrop-filter:blur(15px);-webkit-backdrop-filter:blur(15px);color:var(--orange-main);border:1px solid var(--orange-main);padding:14px 20px;border-radius:14px;cursor:pointer;font-size:1rem;display:flex;align-items:center;justify-content:center;gap:10px;transition:all var(--transition-smooth);font-weight:600;outline:none}
@@ -1862,10 +1874,6 @@ body[data-lang="fa"] .slider-value,body[data-lang="ar"] .slider-value{text-align
 </div>
 </div>
 <div id="textPanel" class="accordion-panel" role="dialog" aria-labelledby="text-panel-title">
-<div class="panel-header">
-<span id="text-panel-title" data-en="Text Settings" data-fa="تنظیمات متن" data-ar="إعدادات النص">Text Settings</span>
-<button class="close-panel" data-close="text" aria-label="Close text panel">×</button>
-</div>
 <div class="panel-content">
 <div class="font-panels-container" id="fontPanelsContainer" role="group" aria-label="Text panels">
 </div>
@@ -1932,10 +1940,6 @@ body[data-lang="fa"] .slider-value,body[data-lang="ar"] .slider-value{text-align
 </div>
 </div>
 <div id="colorPanel" class="accordion-panel" role="dialog" aria-labelledby="color-panel-title">
-<div class="panel-header">
-<span id="color-panel-title" data-en="Text Color" data-fa="رنگ متن" data-ar="لون النص">Text Color</span>
-<button class="close-panel" data-close="color" aria-label="Close color panel">×</button>
-</div>
 <div class="panel-content">
 <div class="color-tools-container">
     <div class="color-tool-card" id="colorPickerTool">
@@ -2014,10 +2018,6 @@ body[data-lang="ar"] .hamburger-panel.active {
 </div>
 </div>
 <div id="backgroundPanel" class="accordion-panel" role="dialog" aria-labelledby="bg-panel-title">
-<div class="panel-header">
-<span id="bg-panel-title" data-en="Text Background" data-fa="پس زمینه متن" data-ar="خلفية النص">Text Background</span>
-<button class="close-panel" data-close="background" aria-label="Close background panel">×</button>
-</div>
 <div class="panel-content">
 <div class="color-grid" id="bgColorGrid" role="group" aria-label="Background color options">
 </div>
@@ -2044,10 +2044,6 @@ body[data-lang="ar"] .hamburger-panel.active {
 </div>
 </div>
 <div id="effectsPanel" class="accordion-panel" role="dialog" aria-labelledby="effects-panel-title">
-<div class="panel-header">
-<span id="effects-panel-title" data-en="Effects" data-fa="افکت‌ها" data-ar="التأثيرات">Effects</span>
-<button class="close-panel" data-close="effects" aria-label="Close effects panel">×</button>
-</div>
 <div class="panel-content">
     <div class="slider-group">
         <label for="strokeSlider" data-en="Stroke:" data-fa="حاشیه:" data-ar="الحد:">Stroke:</label>
@@ -2780,21 +2776,32 @@ updateColorGridSelection(gridId,color){try{const colorGrid=DOM.get(gridId);if(!c
 
 // Enhanced Canvas Renderer with corrected stroke thickness in export
 class CanvasRenderer{constructor(){this.measurementCanvas=document.createElement('canvas');this.measurementCtx=this.measurementCanvas.getContext('2d');this.ctx=this.initializeCanvasContext();this.standardCanvasSize={width:1080,height:1920};this.vipCanvasSize={width:2160,height:3840}}
-    isKashidaOpportunity(char1, char2) {
+        isKashidaOpportunity(char1, char2) {
         const nonLeftJoining = /[\u0627\u0623\u0625\u0622\u062F\u0630\u0631\u0632\u0698\u0648\u0649]/;
-        const isArabic = /[\u0600-\u06FF]/;
-        
-        if (char1 === ' ' || char2 === ' ' || !isArabic.test(char1) || !isArabic.test(char2)) {
+        // FIX: Regex specifically for Arabic letters (excludes numbers, punct, etc.)
+        const isArabicLetter = /[\u0621-\u064A\u066E\u066F\u0671-\u06D3\u06D5\u06E5\u06E6\u06EE\u06EF\u06FA-\u06FC\u06FF]/;
+        // FIX: Regex for spaces, numbers (Latin & Arabic), and punctuation (ASCII & Arabic)
+        const isSpaceOrPunctOrNum = /[\s\d\u0660-\u0669\u06F0-\u06F9\u0020-\u0040\u005B-\u0060\u007B-\u007E\u060C\u061B\u061F\u066A-\u066D\u06D4]/;
+
+        // 1. Must not be space/num/punct
+        if (isSpaceOrPunctOrNum.test(char1) || isSpaceOrPunctOrNum.test(char2)) {
             return false;
         }
-
         
+        // 2. Both must be Arabic letters
+        if (!isArabicLetter.test(char1) || !isArabicLetter.test(char2)) {
+            return false;
+        }
+        
+        // 3. Char1 must not be a non-joining letter
         if (nonLeftJoining.test(char1)) {
             return false;
         }
-       
+        
+        // If all checks pass, it's a valid opportunity
         return true;
     }
+
 
 
     getExportDimensions(quality='standard'){
@@ -3563,9 +3570,6 @@ try{
     if(panel){
         panel.classList.remove('active');
         panel.setAttribute('aria-hidden','true');
-        panel.style.transform='';
-        panel.style.opacity='';
-        panel.style.visibility='';
     }
     if(icon){icon.classList.remove('active');icon.setAttribute('aria-expanded','false')}
 
@@ -3761,17 +3765,31 @@ return true}catch(error){memoryManager.logError('ADD_FONT_PANEL_ERROR',error);re
     }, 100);
 
     memoryManager.addEventListener(textInput, 'input', (e) => {
-        try {
-            const panelIndex = appState.fontPanels.indexOf(panelDiv);
-            if (panelIndex >= 0 && appState.textObjects[panelIndex]) {
-                appState.textObjects[panelIndex].text = e.target.value;
-                debouncedDraw();
+    try {
+        const panelIndex = appState.fontPanels.indexOf(panelDiv);
+        if (panelIndex >= 0 && appState.textObjects[panelIndex]) {
+            appState.textObjects[panelIndex].text = e.target.value;
+            const text = e.target.value;
+            const hasRTLChars = /[\u0590-\u05FF\u0600-\u06FF\u0750-\u077F]/.test(text);
+            
+            if (hasRTLChars) {
+                e.target.style.direction = 'rtl';
+                e.target.style.textAlign = 'right';
+            } else if (text.trim()) {
+                e.target.style.direction = 'ltr';
+                e.target.style.textAlign = 'left';
+            } else {
+                e.target.style.direction = 'ltr';
+                e.target.style.textAlign = 'center';
             }
-            debouncedResize(e.target);
-        } catch (error) {
-            memoryManager.logError('TEXT_INPUT_ERROR', error);
+            
+            debouncedDraw();
         }
-    });
+        debouncedResize(e.target);
+    } catch (error) {
+        memoryManager.logError('TEXT_INPUT_ERROR', error);
+    }
+});
 
     memoryManager.addEventListener(textInput, 'focus', () => {
         try {
@@ -3908,7 +3926,20 @@ accessibilityManager.announce(`Text object ${index+1} selected`)}}catch(error){m
 }
 updateAlignmentButtons(align){try{const alignBtns=[document.getElementById('alignLeftBtn'),document.getElementById('alignCenterBtn'),document.getElementById('alignRightBtn')];alignBtns.forEach(btn=>{if(btn){btn.classList.remove('active');if(btn.dataset.align===align){btn.classList.add('active')}}})}catch(error){memoryManager.logError('ALIGNMENT_BTN_UPDATE_ERROR',error)}}updateColorGridSelection(gridId,color){try{const colorGrid=DOM.get(gridId);if(!colorGrid)return;const hexColor=color.includes('rgb')?this.rgbToHex(color):color;colorGrid.querySelectorAll('.color-grid-swatch').forEach(swatch=>{const isActive=swatch.dataset.color.toLowerCase()===hexColor.toLowerCase();swatch.classList.toggle('active',isActive)})}catch(error){memoryManager.logError('COLOR_GRID_UPDATE_ERROR',error)}}rgbToHex(rgb){try{const result=rgb.match(/\d+/g);if(result&&result.length>=3){return"#"+((1<<24)+(parseInt(result[0],10)<<16)+(parseInt(result[1],10)<<8)+parseInt(result[2],10)).toString(16).slice(1)}return rgb}catch(error){memoryManager.logError('RGB_TO_HEX_ERROR',error);return rgb}}}
 const textManager=new TextManager();
-class InteractionManager{constructor(){this.setupInteractionHandlers()}setupInteractionHandlers(){this.setupCanvasInteraction();this.setupCanvasTransform();this.setupDoubleTapDetection();this.setupBackgroundDoubleTap()}setupCanvasInteraction(){const canvas=DOM.get('canvas');if(!canvas)return;memoryManager.addEventListener(canvas,'click',(e)=>{this.handleCanvasClick(e)});memoryManager.addEventListener(canvas,'dblclick',(e)=>{this.handleCanvasDoubleClick(e)});memoryManager.addEventListener(canvas,'touchend',(e)=>{this.handleCanvasTouchEnd(e)})}setupCanvasTransform(){const canvasWrapper=DOM.get('canvasWrapper');if(!canvasWrapper)return;memoryManager.addEventListener(canvasWrapper,'mousedown',(e)=>{this.handleStart(e)});memoryManager.addEventListener(canvasWrapper,'touchstart',(e)=>{this.handleStart(e)},{passive:false});memoryManager.addEventListener(window,'mousemove',(e)=>{this.handleMove(e)});memoryManager.addEventListener(window,'touchmove',(e)=>{this.handleMove(e)},{passive:false});memoryManager.addEventListener(window,'mouseup',(e)=>{this.handleEnd(e)});memoryManager.addEventListener(window,'touchend',(e)=>{this.handleEnd(e)});memoryManager.addEventListener(window,'touchcancel',(e)=>{this.handleEnd(e)})}setupDoubleTapDetection(){const photoPlaceholder=DOM.get('photoPlaceholder');if(!photoPlaceholder)return;memoryManager.addEventListener(photoPlaceholder,'touchend',(e)=>{this.handlePlaceholderDoubleTap(e)});memoryManager.addEventListener(photoPlaceholder,'dblclick',(e)=>{e.preventDefault();e.stopPropagation();this.showQuickActionModal()})}setupBackgroundDoubleTap(){const canvasContainer=DOM.get('canvasContainer');if(!canvasContainer)return;memoryManager.addEventListener(canvasContainer,'dblclick',(e)=>{if(e.target===canvasContainer){e.preventDefault();e.stopPropagation();this.centerCanvas()}});let backgroundLastTouchTime=0;let backgroundTouchCount=0;memoryManager.addEventListener(canvasContainer,'touchend',(e)=>{if(e.target!==canvasContainer)return;const now=Date.now();if(now-backgroundLastTouchTime<300){backgroundTouchCount++;if(backgroundTouchCount===2){e.preventDefault();e.stopPropagation();this.centerCanvas();backgroundTouchCount=0}}else{backgroundTouchCount=1}backgroundLastTouchTime=now})}getPointerPos(e,el){try{const rect=el.getBoundingClientRect();const clientX=e.touches?e.touches[0].clientX:e.clientX;const clientY=e.touches?e.touches[0].clientY:e.clientY;return{x:clientX-rect.left,y:clientY-rect.top}}catch(error){memoryManager.logError('POINTER_POS_ERROR',error);return{x:0,y:0}}}getCanvasPos(e){try{const canvas=DOM.get('canvas');if(!canvas)return{x:0,y:0};const rect=canvas.getBoundingClientRect();const clientX=e.touches?e.touches[0].clientX:e.clientX;const clientY=e.touches?e.touches[0].clientY:e.clientY;return{x:(clientX-rect.left)*(canvas.width/rect.width),y:(clientY-rect.top)*(canvas.height/rect.height)}}catch(error){memoryManager.logError('CANVAS_POS_ERROR',error);return{x:0,y:0}}}handleStart(e){try{if(appState.isColorPickerActive)return;if(e.touches&&e.touches.length===2){e.preventDefault();appState.isPinching=true;const t1=e.touches[0];const t2=e.touches[1];appState.initialPinchDistance=Math.hypot(t1.clientX-t2.clientX,t1.clientY-t2.clientY);if(appState.selectedTextIndex>=0&&appState.textObjects[appState.selectedTextIndex]){appState.lastFontSize=appState.textObjects[appState.selectedTextIndex].fontSize}return}const canvasPos=this.getCanvasPos(e);let clickedTextIndex=-1;for(let i=appState.textObjects.length-1;i>=0;i--){const textObj=appState.textObjects[i];if(canvasPos.x>=textObj.x&&canvasPos.x<=textObj.x+textObj.width&&canvasPos.y>=textObj.y&&canvasPos.y<=textObj.y+textObj.height){clickedTextIndex=i;break}}if(clickedTextIndex>=0){
+class InteractionManager{constructor(){this.setupInteractionHandlers()}setupInteractionHandlers(){this.setupCanvasInteraction();this.setupCanvasTransform();this.setupDoubleTapDetection();this.setupBackgroundDoubleTap()}setupCanvasInteraction(){const canvas=DOM.get('canvas');if(!canvas)return;memoryManager.addEventListener(canvas,'click',(e)=>{this.handleCanvasClick(e)});memoryManager.addEventListener(canvas,'dblclick',(e)=>{this.handleCanvasDoubleClick(e)});memoryManager.addEventListener(canvas,'touchend',(e)=>{this.handleCanvasTouchEnd(e)})}setupCanvasTransform(){const canvasWrapper=DOM.get('canvasWrapper');if(!canvasWrapper)return;memoryManager.addEventListener(canvasWrapper,'mousedown',(e)=>{this.handleStart(e)});memoryManager.addEventListener(canvasWrapper,'touchstart',(e)=>{this.handleStart(e)},{passive:false});memoryManager.addEventListener(window,'mousemove',(e)=>{this.handleMove(e)});memoryManager.addEventListener(window,'touchmove',(e)=>{this.handleMove(e)},{passive:false});memoryManager.addEventListener(window,'mouseup',(e)=>{this.handleEnd(e)});memoryManager.addEventListener(window,'touchend',(e)=>{this.handleEnd(e)});memoryManager.addEventListener(window,'touchcancel',(e)=>{this.handleEnd(e)})}setupDoubleTapDetection(){
+    const photoPlaceholder=DOM.get('photoPlaceholder');
+    if(!photoPlaceholder)return;
+memoryManager.addEventListener(photoPlaceholder,'touchstart',(e)=>{
+        e.preventDefault();
+        e.stopPropagation();
+        this.showQuickActionModal();
+    });
+memoryManager.addEventListener(photoPlaceholder,'click',(e)=>{
+        e.preventDefault();
+        e.stopPropagation();
+        this.showQuickActionModal();
+    });
+}setupBackgroundDoubleTap(){const canvasContainer=DOM.get('canvasContainer');if(!canvasContainer)return;memoryManager.addEventListener(canvasContainer,'dblclick',(e)=>{if(e.target===canvasContainer){e.preventDefault();e.stopPropagation();this.centerCanvas()}});let backgroundLastTouchTime=0;let backgroundTouchCount=0;memoryManager.addEventListener(canvasContainer,'touchend',(e)=>{if(e.target!==canvasContainer)return;const now=Date.now();if(now-backgroundLastTouchTime<300){backgroundTouchCount++;if(backgroundTouchCount===2){e.preventDefault();e.stopPropagation();this.centerCanvas();backgroundTouchCount=0}}else{backgroundTouchCount=1}backgroundLastTouchTime=now})}getPointerPos(e,el){try{const rect=el.getBoundingClientRect();const clientX=e.touches?e.touches[0].clientX:e.clientX;const clientY=e.touches?e.touches[0].clientY:e.clientY;return{x:clientX-rect.left,y:clientY-rect.top}}catch(error){memoryManager.logError('POINTER_POS_ERROR',error);return{x:0,y:0}}}getCanvasPos(e){try{const canvas=DOM.get('canvas');if(!canvas)return{x:0,y:0};const rect=canvas.getBoundingClientRect();const clientX=e.touches?e.touches[0].clientX:e.clientX;const clientY=e.touches?e.touches[0].clientY:e.clientY;return{x:(clientX-rect.left)*(canvas.width/rect.width),y:(clientY-rect.top)*(canvas.height/rect.height)}}catch(error){memoryManager.logError('CANVAS_POS_ERROR',error);return{x:0,y:0}}}handleStart(e){try{if(appState.isColorPickerActive)return;if(e.touches&&e.touches.length===2){e.preventDefault();appState.isPinching=true;const t1=e.touches[0];const t2=e.touches[1];appState.initialPinchDistance=Math.hypot(t1.clientX-t2.clientX,t1.clientY-t2.clientY);if(appState.selectedTextIndex>=0&&appState.textObjects[appState.selectedTextIndex]){appState.lastFontSize=appState.textObjects[appState.selectedTextIndex].fontSize}return}const canvasPos=this.getCanvasPos(e);let clickedTextIndex=-1;for(let i=appState.textObjects.length-1;i>=0;i--){const textObj=appState.textObjects[i];if(canvasPos.x>=textObj.x&&canvasPos.x<=textObj.x+textObj.width&&canvasPos.y>=textObj.y&&canvasPos.y<=textObj.y+textObj.height){clickedTextIndex=i;break}}if(clickedTextIndex>=0){
 // بررسی قفل بودن لایه
 const textObj=appState.textObjects[clickedTextIndex];if(textObj.locked){
 // اگر لایه قفل است، فقط انتخاب می‌شود ولی نمی‌تواند جابجا شود
@@ -4042,7 +4073,7 @@ textManager.selectTextObject(clickedTextIndex);accessibilityManager.announce('La
         memoryManager.logError('HANDLE_MOVE_ERROR',error)
     }
 }
-handleEnd(e){try{if(e.touches&&e.touches.length>0)return;if(appState.isDraggingCanvas){const canvasWrapper=DOM.get('canvasWrapper');if(canvasWrapper){canvasWrapper.style.cursor='grab'}if(Math.abs(appState.momentum.x)>2||Math.abs(appState.momentum.y)>2){const finalX=appState.canvasTransform.x+appState.momentum.x*0.3;const finalY=appState.canvasTransform.y+appState.momentum.y*0.3;this.updateCanvasTransform(finalX,finalY,true)}}appState.isDraggingText=false;appState.isDraggingCanvas=false;appState.isPinching=false;appState.momentum={x:0,y:0};uiManager.hideGuideLines()}catch(error){memoryManager.logError('HANDLE_END_ERROR',error)}}constrainCanvasPosition(x,y){const bounds=appState.canvasBounds;const constrainedX=Math.max(bounds.left,Math.min(bounds.right,x));const constrainedY=Math.max(bounds.top,Math.min(bounds.bottom,y));return{x:constrainedX,y:constrainedY}}updateCanvasTransform(x,y,smooth=false){try{const canvasWrapper=DOM.get('canvasWrapper');if(!canvasWrapper)return;const constrained=this.constrainCanvasPosition(x,y);appState.canvasTransform.x=constrained.x;appState.canvasTransform.y=constrained.y;if(smooth){canvasWrapper.classList.add('smooth-transition');requestAnimationFrame(()=>{canvasWrapper.style.transform=`translate(${constrained.x}px, ${constrained.y}px)`;setTimeout(()=>{canvasWrapper.classList.remove('smooth-transition')},400)})}else{canvasWrapper.style.transform=`translate(${constrained.x}px, ${constrained.y}px)`}}catch(error){memoryManager.logError('TRANSFORM_ERROR',error)}}centerCanvas(){try{const canvasWrapper=DOM.get('canvasWrapper');if(!canvasWrapper)return;appState.canvasTransform={x:0,y:0};appState.momentum={x:0,y:0};canvasWrapper.classList.add('smooth-transition');canvasWrapper.style.transform='translate(0px, 0px)';setTimeout(()=>{canvasWrapper.classList.remove('smooth-transition')},400);accessibilityManager.announce('Canvas centered')}catch(error){memoryManager.logError('CENTER_CANVAS_ERROR',error)}}handleCanvasClick(e){try{if(appState.isColorPickerActive)return;const canvasPos=this.getCanvasPos(e);let clickedTextIndex=-1;for(let i=appState.textObjects.length-1;i>=0;i--){const textObj=appState.textObjects[i];if(canvasPos.x>=textObj.x&&canvasPos.x<=textObj.x+textObj.width&&canvasPos.y>=textObj.y&&canvasPos.y<=textObj.y+textObj.height){clickedTextIndex=i;break}}if(clickedTextIndex>=0){textManager.selectTextObject(clickedTextIndex);if(!document.querySelector('.accordion-panel.active')){uiManager.openPanel('text')}}}catch(error){memoryManager.logError('CANVAS_CLICK_ERROR',error)}}handleCanvasDoubleClick(e){try{if(appState.isColorPickerActive)return;const canvasPos=this.getCanvasPos(e);let clickedTextIndex=-1;for(let i=appState.textObjects.length-1;i>=0;i--){const textObj=appState.textObjects[i];if(canvasPos.x>=textObj.x&&canvasPos.x<=textObj.x+textObj.width&&canvasPos.y>=textObj.y&&canvasPos.y<=textObj.y+textObj.height){clickedTextIndex=i;break}}if(clickedTextIndex===-1){e.preventDefault();e.stopPropagation();this.centerCanvas()}else{textManager.selectTextObject(clickedTextIndex);const textPanel=document.getElementById('textPanel');if(textPanel&&!textPanel.classList.contains('active')){uiManager.openPanel('text')}}}catch(error){memoryManager.logError('CANVAS_DOUBLE_CLICK_ERROR',error)}}handleCanvasTouchEnd(e){try{if(appState.isColorPickerActive)return;const now=Date.now();if(now-appState.lastCanvasTouchTime<300){appState.canvasTouchCount++;if(appState.canvasTouchCount===2){e.preventDefault();e.stopPropagation();const canvasPos=this.getCanvasPos(e.changedTouches[0]);let clickedTextIndex=-1;for(let i=appState.textObjects.length-1;i>=0;i--){const textObj=appState.textObjects[i];if(canvasPos.x>=textObj.x&&canvasPos.x<=textObj.x+textObj.width&&canvasPos.y>=textObj.y&&canvasPos.y<=textObj.y+textObj.height){clickedTextIndex=i;break}}if(clickedTextIndex===-1){this.centerCanvas()}else{textManager.selectTextObject(clickedTextIndex);const textPanel=document.getElementById('textPanel');if(textPanel&&!textPanel.classList.contains('active')){uiManager.openPanel('text')}}appState.canvasTouchCount=0}}else{appState.canvasTouchCount=1}appState.lastCanvasTouchTime=now}catch(error){memoryManager.logError('CANVAS_TOUCH_ERROR',error)}}handlePlaceholderDoubleTap(e){try{e.preventDefault();e.stopPropagation();const now=Date.now();if(now-appState.lastTapTime<appState.doubleTapDelay){appState.tapCount++;if(appState.tapCount===2){this.showQuickActionModal();appState.tapCount=0;return}}else{appState.tapCount=1}appState.lastTapTime=now}catch(error){memoryManager.logError('PLACEHOLDER_TAP_ERROR',error)}}showQuickActionModal(){accessibilityManager.openModal('quickActionModal')}hideQuickActionModal(){accessibilityManager.closeModal('quickActionModal')}}
+handleEnd(e){try{if(e.touches&&e.touches.length>0)return;if(appState.isDraggingCanvas){const canvasWrapper=DOM.get('canvasWrapper');if(canvasWrapper){canvasWrapper.style.cursor='grab'}if(Math.abs(appState.momentum.x)>2||Math.abs(appState.momentum.y)>2){const finalX=appState.canvasTransform.x+appState.momentum.x*0.3;const finalY=appState.canvasTransform.y+appState.momentum.y*0.3;this.updateCanvasTransform(finalX,finalY,true)}}appState.isDraggingText=false;appState.isDraggingCanvas=false;appState.isPinching=false;appState.momentum={x:0,y:0};uiManager.hideGuideLines()}catch(error){memoryManager.logError('HANDLE_END_ERROR',error)}}constrainCanvasPosition(x,y){const bounds=appState.canvasBounds;const constrainedX=Math.max(bounds.left,Math.min(bounds.right,x));const constrainedY=Math.max(bounds.top,Math.min(bounds.bottom,y));return{x:constrainedX,y:constrainedY}}updateCanvasTransform(x,y,smooth=false){try{const canvasWrapper=DOM.get('canvasWrapper');if(!canvasWrapper)return;const constrained=this.constrainCanvasPosition(x,y);appState.canvasTransform.x=constrained.x;appState.canvasTransform.y=constrained.y;if(smooth){canvasWrapper.classList.add('smooth-transition');requestAnimationFrame(()=>{canvasWrapper.style.transform=`translate(${constrained.x}px, ${constrained.y}px)`;setTimeout(()=>{canvasWrapper.classList.remove('smooth-transition')},400)})}else{canvasWrapper.style.transform=`translate(${constrained.x}px, ${constrained.y}px)`}}catch(error){memoryManager.logError('TRANSFORM_ERROR',error)}}centerCanvas(){try{const canvasWrapper=DOM.get('canvasWrapper');if(!canvasWrapper)return;appState.canvasTransform={x:0,y:0};appState.momentum={x:0,y:0};canvasWrapper.classList.add('smooth-transition');canvasWrapper.style.transform='translate(0px, 0px)';setTimeout(()=>{canvasWrapper.classList.remove('smooth-transition')},400);accessibilityManager.announce('Canvas centered')}catch(error){memoryManager.logError('CENTER_CANVAS_ERROR',error)}}handleCanvasClick(e){try{if(appState.isColorPickerActive)return;const canvasPos=this.getCanvasPos(e);let clickedTextIndex=-1;for(let i=appState.textObjects.length-1;i>=0;i--){const textObj=appState.textObjects[i];if(canvasPos.x>=textObj.x&&canvasPos.x<=textObj.x+textObj.width&&canvasPos.y>=textObj.y&&canvasPos.y<=textObj.y+textObj.height){clickedTextIndex=i;break}}if(clickedTextIndex>=0){textManager.selectTextObject(clickedTextIndex);if(!document.querySelector('.accordion-panel.active')){uiManager.openPanel('text')}}}catch(error){memoryManager.logError('CANVAS_CLICK_ERROR',error)}}handleCanvasDoubleClick(e){try{if(appState.isColorPickerActive)return;const canvasPos=this.getCanvasPos(e);let clickedTextIndex=-1;for(let i=appState.textObjects.length-1;i>=0;i--){const textObj=appState.textObjects[i];if(canvasPos.x>=textObj.x&&canvasPos.x<=textObj.x+textObj.width&&canvasPos.y>=textObj.y&&canvasPos.y<=textObj.y+textObj.height){clickedTextIndex=i;break}}if(clickedTextIndex===-1){e.preventDefault();e.stopPropagation();this.centerCanvas()}else{textManager.selectTextObject(clickedTextIndex);const textPanel=document.getElementById('textPanel');if(textPanel&&!textPanel.classList.contains('active')){uiManager.openPanel('text')}}}catch(error){memoryManager.logError('CANVAS_DOUBLE_CLICK_ERROR',error)}}handleCanvasTouchEnd(e){try{if(appState.isColorPickerActive)return;const now=Date.now();if(now-appState.lastCanvasTouchTime<300){appState.canvasTouchCount++;if(appState.canvasTouchCount===2){e.preventDefault();e.stopPropagation();const canvasPos=this.getCanvasPos(e.changedTouches[0]);let clickedTextIndex=-1;for(let i=appState.textObjects.length-1;i>=0;i--){const textObj=appState.textObjects[i];if(canvasPos.x>=textObj.x&&canvasPos.x<=textObj.x+textObj.width&&canvasPos.y>=textObj.y&&canvasPos.y<=textObj.y+textObj.height){clickedTextIndex=i;break}}if(clickedTextIndex===-1){this.centerCanvas()}else{textManager.selectTextObject(clickedTextIndex);const textPanel=document.getElementById('textPanel');if(textPanel&&!textPanel.classList.contains('active')){uiManager.openPanel('text')}}appState.canvasTouchCount=0}}else{appState.canvasTouchCount=1}appState.lastCanvasTouchTime=now}catch(error){memoryManager.logError('CANVAS_TOUCH_ERROR',error)}}showQuickActionModal(){accessibilityManager.openModal('quickActionModal')}hideQuickActionModal(){accessibilityManager.closeModal('quickActionModal')}}
 class LayerManager {
     constructor() {
         this.layerListContainer = document.getElementById('layerList');
@@ -4599,7 +4630,7 @@ class DownloadManager{constructor(){this.jpegQuality=0.9;this.vipJpegQuality=1.0
 updateDownloadModalContent(){try{const saveToGalleryTitle=DOM.get('saveToGalleryTitle');if(saveToGalleryTitle){const hasText=appState.textObjects.some(t=>t.text.trim());if(hasText){saveToGalleryTitle.textContent=appState.currentLang==='fa'?'ذخیره عکس JPEG':appState.currentLang==='ar'?'حفظ الصورة JPEG':'Save as JPEG'}else{saveToGalleryTitle.textContent=appState.currentLang==='fa'?'عکس کیفیت خوب':appState.currentLang==='ar'?'صورة جودة جيدة':'Good Quality JPEG'}}}catch(error){memoryManager.logError('DOWNLOAD_MODAL_UPDATE_ERROR',error)}}hasContent(){return appState.img||appState.textObjects.some(t=>t.text.trim())}async handleDownloadAction(action){try{if(!this.hasContent()){showAlert(languageManager.translateText('alertImage'));return}switch(action){case'save-gallery':await this.saveStandardQuality();break;case'save-vip-quality':await this.saveVipQuality();break;case'download-transparent':await this.downloadTransparent();break;default:memoryManager.logError('UNKNOWN_ACTION',new Error(`Unknown action: ${action}`));break}accessibilityManager.closeModal('downloadModal')}catch(error){memoryManager.logError('DOWNLOAD_ACTION_ERROR',error);showAlert(errorBoundary.translateError(error?.message||'DOWNLOAD_ERROR'))}}async saveStandardQuality(){try{const dimensions=canvasRenderer.getExportDimensions('standard');const canvas=await this.createExportCanvas('jpeg',dimensions);const blob=await new Promise((resolve,reject)=>{canvas.toBlob((blob)=>{if(blob){resolve(blob)}else{reject(new Error('BLOB_GENERATION_FAILED'))}}, 'image/jpeg',this.jpegQuality)});await this.saveToDevice(blob,'DACO_Story.jpg');showAlert(languageManager.translateText('saveSuccess'))}catch(error){memoryManager.logError('STANDARD_QUALITY_ERROR',error);throw error}}async saveVipQuality(){try{const dimensions=canvasRenderer.getExportDimensions('vip');const canvas=await this.createExportCanvas('jpeg',dimensions);const blob=await new Promise((resolve,reject)=>{canvas.toBlob((blob)=>{if(blob){resolve(blob)}else{reject(new Error('BLOB_GENERATION_FAILED'))}}, 'image/jpeg',this.vipJpegQuality)});await this.saveToDevice(blob,'DACO_VIP_4K.jpg');showAlert(languageManager.translateText('saveVipSuccess'))}catch(error){memoryManager.logError('VIP_QUALITY_ERROR',error);throw error}}async downloadTransparent(){try{const hasText=appState.textObjects.some(t=>t.text.trim());if(!hasText){const message=appState.currentLang==='fa'?'ابتدا متن را وارد کنید':appState.currentLang==='ar'?'أدخل النص أولاً':'Please enter text first';showAlert(message);return}const dimensions=canvasRenderer.getExportDimensions('vip');const tempCanvas=document.createElement('canvas');const tempCtx=tempCanvas.getContext('2d',{alpha:true});tempCanvas.width=dimensions.width;tempCanvas.height=dimensions.height;canvasRenderer.drawTextObjectsToExportCanvas(tempCtx,dimensions.width,dimensions.height);const blob=await new Promise((resolve,reject)=>{tempCanvas.toBlob((blob)=>{if(blob){resolve(blob)}else{reject(new Error('BLOB_GENERATION_FAILED'))}}, 'image/png',1.0)});await this.saveToDevice(blob,'DACO_Text_Transparent.png')}catch(error){memoryManager.logError('TRANSPARENT_DOWNLOAD_ERROR',error);throw error}}async createExportCanvas(format,targetSize){try{const exportCanvas=document.createElement('canvas');const exportCtx=exportCanvas.getContext('2d');if(!exportCtx)throw new Error('CANVAS_CONTEXT_ERROR');exportCanvas.width=targetSize.width;exportCanvas.height=targetSize.height;const pixels=exportCanvas.width*exportCanvas.height;if(pixels>67108864)throw new Error('MEMORY_ERROR');exportCtx.imageSmoothingEnabled=true;exportCtx.imageSmoothingQuality='high';exportCtx.fillStyle="#FFFFFF";exportCtx.fillRect(0,0,exportCanvas.width,exportCanvas.height);if(appState.img){const img=appState.img;const imgRatio=img.naturalWidth/img.naturalHeight;const canvasRatio=exportCanvas.width/exportCanvas.height;let sx,sy,sw,sh;if(imgRatio>canvasRatio){sh=img.naturalHeight;sw=sh*canvasRatio;sx=(img.naturalWidth-sw)/2;sy=0}else{sw=img.naturalWidth;sh=sw/canvasRatio;sx=0;sy=(img.naturalHeight-sh)/2}exportCtx.drawImage(img,sx,sy,sw,sh,0,0,exportCanvas.width,exportCanvas.height)}canvasRenderer.drawTextObjectsToExportCanvas(exportCtx,exportCanvas.width,exportCanvas.height);return exportCanvas}catch(error){memoryManager.logError('EXPORT_CANVAS_ERROR',error);throw error}}async saveToDevice(blob,filename){try{if(navigator.share&&navigator.canShare&&navigator.canShare({files:[new File([blob],filename)]})){await navigator.share({files:[new File([blob],filename)],title:'DACO  ',text:'Created with DACO   Pro'});return}if('clipboard' in navigator&&'write' in navigator.clipboard){try{const clipboardItem=new ClipboardItem({[blob.type]:blob});await navigator.clipboard.write([clipboardItem]);showAlert(languageManager.translateText('copySuccess'));return}catch(clipboardError){}}await this.downloadFile(blob,filename)}catch(error){memoryManager.logError('SAVE_TO_DEVICE_ERROR',error);throw error}}async downloadFile(blob,filename){try{const url=memoryManager.createBlobUrl(blob);if(!url)throw new Error('BLOB_URL_CREATION_FAILED');const link=document.createElement('a');link.href=url;link.download=filename;link.style.display='none';document.body.appendChild(link);link.click();document.body.removeChild(link);setTimeout(()=>{memoryManager.revokeBlobUrl(url)},1000)}catch(error){memoryManager.logError('DOWNLOAD_FILE_ERROR',error);throw error}}}
 const downloadManager=new DownloadManager();
 function initializeEventListeners(){try{const imageInput=DOM.get('imageInput');
-const uploadImageBtn=DOM.get('uploadImageBtn');const deleteImageBtn=DOM.get('deleteImageBtn');const photoPlaceholder=DOM.get('photoPlaceholder');const quickAddImage=DOM.get('quickAddImage');const quickAddText=DOM.get('quickAddText');const fontInput=DOM.get('fontInput');const fontSelector=DOM.get('fontSelector');const addFontPanelBtn=DOM.get('addFontPanelBtn');const textColorGrid=DOM.get('textColorGrid');const bgColorGrid=DOM.get('bgColorGrid');const controlIcons=DOM.get('controlIcons');const accordionPanels=DOM.get('accordionPanels');const closePanelBtns=DOM.get('closePanelBtns');const sliders=['fontSizeSlider','opacitySlider','shadowSlider','strokeSlider','glowSlider','backdropOpacitySlider','backdropRadiusSlider','backdropWidthSlider','backdropHeightSlider','letterSpacingSlider','lineHeightSlider'];
+const uploadImageBtn=DOM.get('uploadImageBtn');const deleteImageBtn=DOM.get('deleteImageBtn');const photoPlaceholder=DOM.get('photoPlaceholder');const quickAddImage=DOM.get('quickAddImage');const quickAddText=DOM.get('quickAddText');const fontInput=DOM.get('fontInput');const fontSelector=DOM.get('fontSelector');const addFontPanelBtn=DOM.get('addFontPanelBtn');const textColorGrid=DOM.get('textColorGrid');const bgColorGrid=DOM.get('bgColorGrid');const controlIcons=DOM.get('controlIcons');const accordionPanels=DOM.get('accordionPanels');const sliders=['fontSizeSlider','opacitySlider','shadowSlider','strokeSlider','glowSlider','backdropOpacitySlider','backdropRadiusSlider','backdropWidthSlider','backdropHeightSlider','letterSpacingSlider','lineHeightSlider'];
 
 // Setup Undo/Redo buttons
 const undoBtn=document.getElementById('undoBtn');
@@ -4621,6 +4652,20 @@ const dirRTLBtn=document.getElementById('dirRTLBtn');
 const dirBtns=[dirLTRBtn,dirRTLBtn];
 
 dirBtns.forEach(btn=>{if(btn){memoryManager.addEventListener(btn,'click',()=>{const dir=btn.dataset.dir;if(appState.selectedTextIndex>=0&&appState.textObjects[appState.selectedTextIndex]){undoRedoManager.saveState();appState.textObjects[appState.selectedTextIndex].textDirection=dir;dirBtns.forEach(b=>b&&b.classList.remove('active'));btn.classList.add('active');performanceMonitor.scheduleDraw()}})}});
+
+// Close accordion panels on outside click
+memoryManager.addEventListener(document, 'click', (e) => {
+    const activePanel = document.querySelector('.accordion-panel.active');
+    if (!activePanel) return;
+    
+    const isClickInsidePanel = activePanel.contains(e.target);
+    const isClickOnControlIcon = e.target.closest('.control-icon');
+    
+    if (!isClickInsidePanel && !isClickOnControlIcon) {
+        const panelId = activePanel.id.replace('Panel', '');
+        uiManager.closePanel(panelId);
+    }
+});
 
 // --- START: Corrected Hamburger Menu Button Listeners ---
 
@@ -4656,7 +4701,7 @@ if (undoRedoToggle && undoRedoBar) {
     });
 }
 
-if(imageInput){memoryManager.addEventListener(imageInput,'change',async(e)=>{if(e.target.files&&e.target.files[0]){try{await imageManager.initializeCropModal(e.target.files[0])}catch(error){memoryManager.logError('IMAGE_INPUT_ERROR',error)}e.target.value=''}})}if(uploadImageBtn){memoryManager.addEventListener(uploadImageBtn,'click',()=>{imageInput.click()})}if(deleteImageBtn){memoryManager.addEventListener(deleteImageBtn,'click',()=>{imageManager.deleteCurrentImage()})}if(photoPlaceholder){memoryManager.addEventListener(photoPlaceholder,'click',()=>{imageInput.click()})}if(quickAddImage){memoryManager.addEventListener(quickAddImage,'click',()=>{interactionManager.hideQuickActionModal();imageInput.click()})}if(quickAddText){memoryManager.addEventListener(quickAddText,'click',()=>{interactionManager.hideQuickActionModal();textManager.addFontPanel();uiManager.openPanel('text');setTimeout(()=>{const panels=appState.fontPanels;if(panels.length>0){const lastPanel=panels[panels.length-1];const textInput=lastPanel.querySelector('.font-text-input');if(textInput){textInput.focus();textInput.select()}}},100)})}if(fontInput){memoryManager.addEventListener(fontInput,'change',async(e)=>{if(e.target.files&&e.target.files[0]){const file=e.target.files[0];const fileName=file.name.replace(/\.[^/.]+$/,"");try{await fontManager.loadCustomFont(file,fileName)}catch(error){memoryManager.logError('FONT_INPUT_ERROR',error)}e.target.value=''}})}if(fontSelector){memoryManager.addEventListener(fontSelector,'change',(e)=>{appState.currentFont=e.target.value;if(appState.selectedTextIndex>=0&&appState.textObjects[appState.selectedTextIndex]){undoRedoManager.saveState();appState.textObjects[appState.selectedTextIndex].font=e.target.value;performanceMonitor.scheduleDraw()}})}if(addFontPanelBtn){memoryManager.addEventListener(addFontPanelBtn,'click',()=>{textManager.addFontPanel();uiManager.openPanel('text');setTimeout(()=>{const panels=appState.fontPanels;if(panels.length>0){const lastPanel=panels[panels.length-1];const textInput=lastPanel.querySelector('.font-text-input');if(textInput){textInput.focus();textInput.select()}}},100)})}if(textColorGrid){uiManager.createColorGrid(textColorGrid,(color)=>{if(appState.selectedTextIndex>=0&&appState.textObjects[appState.selectedTextIndex]){undoRedoManager.saveState();appState.textObjects[appState.selectedTextIndex].color=color;const colorPreview=DOM.get('colorPickerPreview');if(colorPreview){colorPreview.style.backgroundColor=color}performanceMonitor.scheduleDraw()}})}if(bgColorGrid){uiManager.createColorGrid(bgColorGrid,(color)=>{if(appState.selectedTextIndex>=0&&appState.textObjects[appState.selectedTextIndex]){undoRedoManager.saveState();appState.textObjects[appState.selectedTextIndex].backdropColor=color;performanceMonitor.scheduleDraw()}})}if(controlIcons){controlIcons.forEach(controlIcon=>{memoryManager.addEventListener(controlIcon,'click',()=>{const panel=controlIcon.dataset.panel;if(panel){const currentPanel=document.getElementById(panel+'Panel');if(currentPanel&&currentPanel.classList.contains('active')){uiManager.closePanel(panel)}else{uiManager.openPanel(panel)}}})})}if(closePanelBtns){closePanelBtns.forEach(btn=>{memoryManager.addEventListener(btn,'click',()=>{const panel=btn.dataset.close;if(panel){uiManager.closePanel(panel)}})})}sliders.forEach(sliderId => {
+if(imageInput){memoryManager.addEventListener(imageInput,'change',async(e)=>{if(e.target.files&&e.target.files[0]){try{await imageManager.initializeCropModal(e.target.files[0])}catch(error){memoryManager.logError('IMAGE_INPUT_ERROR',error)}e.target.value=''}})}if(uploadImageBtn){memoryManager.addEventListener(uploadImageBtn,'click',()=>{imageInput.click()})}if(deleteImageBtn){memoryManager.addEventListener(deleteImageBtn,'click',()=>{imageManager.deleteCurrentImage()})}if(photoPlaceholder){memoryManager.addEventListener(photoPlaceholder,'click',()=>{imageInput.click()})}if(quickAddImage){memoryManager.addEventListener(quickAddImage,'click',()=>{interactionManager.hideQuickActionModal();imageInput.click()})}if(quickAddText){memoryManager.addEventListener(quickAddText,'click',()=>{interactionManager.hideQuickActionModal();textManager.addFontPanel();uiManager.openPanel('text');setTimeout(()=>{const panels=appState.fontPanels;if(panels.length>0){const lastPanel=panels[panels.length-1];const textInput=lastPanel.querySelector('.font-text-input');if(textInput){textInput.focus();textInput.select()}}},100)})}if(fontInput){memoryManager.addEventListener(fontInput,'change',async(e)=>{if(e.target.files&&e.target.files[0]){const file=e.target.files[0];const fileName=file.name.replace(/\.[^/.]+$/,"");try{await fontManager.loadCustomFont(file,fileName)}catch(error){memoryManager.logError('FONT_INPUT_ERROR',error)}e.target.value=''}})}if(fontSelector){memoryManager.addEventListener(fontSelector,'change',(e)=>{appState.currentFont=e.target.value;if(appState.selectedTextIndex>=0&&appState.textObjects[appState.selectedTextIndex]){undoRedoManager.saveState();appState.textObjects[appState.selectedTextIndex].font=e.target.value;performanceMonitor.scheduleDraw()}})}if(addFontPanelBtn){memoryManager.addEventListener(addFontPanelBtn,'click',()=>{textManager.addFontPanel();uiManager.openPanel('text');setTimeout(()=>{const panels=appState.fontPanels;if(panels.length>0){const lastPanel=panels[panels.length-1];const textInput=lastPanel.querySelector('.font-text-input');if(textInput){textInput.focus();textInput.select()}}},100)})}if(textColorGrid){uiManager.createColorGrid(textColorGrid,(color)=>{if(appState.selectedTextIndex>=0&&appState.textObjects[appState.selectedTextIndex]){undoRedoManager.saveState();appState.textObjects[appState.selectedTextIndex].color=color;const colorPreview=DOM.get('colorPickerPreview');if(colorPreview){colorPreview.style.backgroundColor=color}performanceMonitor.scheduleDraw()}})}if(bgColorGrid){uiManager.createColorGrid(bgColorGrid,(color)=>{if(appState.selectedTextIndex>=0&&appState.textObjects[appState.selectedTextIndex]){undoRedoManager.saveState();appState.textObjects[appState.selectedTextIndex].backdropColor=color;performanceMonitor.scheduleDraw()}})}if(controlIcons){controlIcons.forEach(controlIcon=>{memoryManager.addEventListener(controlIcon,'click',()=>{const panel=controlIcon.dataset.panel;if(panel){const currentPanel=document.getElementById(panel+'Panel');if(currentPanel&&currentPanel.classList.contains('active')){uiManager.closePanel(panel)}else{uiManager.openPanel(panel)}}})})}sliders.forEach(sliderId => {
     const slider = DOM.get(sliderId);
     if (slider) {
         let isSliding = false;
