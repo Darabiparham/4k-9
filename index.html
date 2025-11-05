@@ -773,7 +773,69 @@ textarea:focus,input:focus,select:focus{border-color:var(--orange-main);box-shad
 .toggle-switch::after{content:'';position:absolute;top:2px;left:2px;width:20px;height:20px;background:white;border-radius:50%;transition:all var(--transition-smooth);box-shadow:0 2px 4px rgba(0,0,0,0.2)}
 .toggle-switch.active{background:var(--orange-main)}
 .toggle-switch.active::after{left:22px}
+.collapse-btn {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid var(--border-color-light);
+    color: var(--text-color-light);
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all var(--transition-fast);
+    flex-shrink: 0;
+    padding: 0;
+    outline: none;
+}
 
+.collapse-btn:hover,
+.collapse-btn:focus {
+    background: rgba(255, 110, 65, 0.2);
+    border-color: var(--orange-main);
+    transform: scale(1.05);
+}
+
+.collapse-btn svg {
+    width: 18px;
+    height: 18px;
+    stroke: currentColor;
+    fill: none;
+    stroke-width: 2.5;
+    transition: transform 0.3s ease;
+}
+
+body[data-lang="fa"] .layer-panel .collapse-btn svg,
+body[data-lang="ar"] .layer-panel .collapse-btn svg {
+    transform: scaleX(-1);
+}
+
+body[data-lang="fa"] .layer-panel.collapsed .collapse-btn svg,
+body[data-lang="ar"] .layer-panel.collapsed .collapse-btn svg {
+    transform: scaleX(-1) rotate(180deg);
+}
+
+.layer-panel.collapsed .collapse-btn svg {
+    transform: rotate(180deg);
+}
+.panel-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px;
+    border-bottom: 1px solid var(--border-color-light);
+    gap: 12px;
+    flex-shrink: 0;
+}
+
+.panel-header span {
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: var(--text-color-light);
+    flex: 1;
+    text-align: center;
+}
 .layer-panel{
 position:fixed;
 top: calc(var(--header-base-height) + var(--safe-area-top) + 20px);
@@ -1587,7 +1649,7 @@ body[data-lang="fa"] .slider-value,body[data-lang="ar"] .slider-value{text-align
 </button>
 </div>
 <div class="app-title-section">
-<h1 id="appTitle">DACO editor K9</h1>
+<h1 id="appTitle">DACO editor K10</h1>
 <p class="subtitle" id="appSubtitle">made by parham darabi</p>
 </div>
 <div class="header-controls-right">
@@ -1861,7 +1923,8 @@ body[data-lang="fa"] .slider-value,body[data-lang="ar"] .slider-value{text-align
 <div class="panel-header">
 <button class="collapse-btn" id="layerCollapseBtn" aria-label="Collapse panel">
 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-<polyline points="9 18 15 12 9 6"></polyline>
+<polyline points="13 17 18 12 13 7"></polyline>
+<polyline points="6 17 11 12 6 7"></polyline>
 </svg>
 </button>
 <span id="layer-panel-title" data-en="Layers" data-fa="لایه‌ها" data-ar="الطبقات">Layers</span>
@@ -1996,11 +2059,9 @@ body[data-lang="ar"] .hamburger-panel.active {
         <div class="color-picker-preview" id="colorPickerPreview"></div>
     </div>
     <div class="color-tool-card" id="colorWheelTool">
-        <button class="color-tool-btn" id="colorWheelBtn" aria-label="Open professional color wheel picker" tabindex="0">
-            <svg fill="currentColor" height="32px" width="32px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 487.15 487.15" xml:space="preserve">
-                <path d="M243.575,0C109.265,0,0,109.265,0,243.576C0,377.885,109.265,487.15,243.575,487.15S487.15,377.885,487.15,243.576 C487.15,109.265,377.885,0,243.575,0z M243.575,363.927c-66.361,0-120.352-53.991-120.352-120.352 c0-66.361,53.991-120.352,120.352-120.352c66.362,0,120.352,53.99,120.352,120.352C363.927,309.936,309.937,363.927,243.575,363.927 z M336.489,137.345c-22.398-19.615-51.027-32.279-82.489-34.587V21.103c53.924,2.498,102.897,24.262,140.187,58.552L336.489,137.345 z M233.149,102.758c-31.464,2.308-60.094,14.974-82.493,34.591L92.962,79.656c37.29-34.291,86.264-56.055,140.187-58.553V102.758z M136.021,152.199c-19.15,22.506-31.374,51.071-33.353,82.376H21.048c2.148-53.763,23.436-102.684,57.235-140.113L136.021,152.199z M102.874,255.426c2.581,30.9,15.152,59.004,34.47,81.062L79.65,394.183c-33.986-36.961-55.671-85.397-58.483-138.757H102.874z M152.194,351.125c22.165,18.862,50.207,31.013,80.956,33.268v81.654c-53.205-2.465-101.594-23.683-138.693-57.186L152.194,351.125z M254,384.393c30.747-2.255,58.786-14.403,80.951-33.263l57.737,57.736c-37.099,33.5-85.485,54.717-138.689,57.181V384.393z M349.801,336.494c19.321-22.06,31.895-50.166,34.475-81.068h81.706c-2.812,53.361-24.499,101.801-58.488,138.762L349.801,336.494z M384.483,234.574c-1.98-31.307-14.206-59.874-33.358-82.381l57.741-57.732c33.799,37.43,55.087,86.351,57.235,140.113H384.483z"></path>
-            </svg>
-        </button>
+<button class="color-tool-btn" id="colorWheelBtn" aria-label="Open professional color wheel picker" tabindex="0">
+<svg fill="currentColor" width="32" height="32" viewBox="0 0 487.15 487.15" xmlns="http://www.w3.org/2000/svg"><path d="M243.6 0C109.3 0 0 109.3 0 243.6s109.3 243.6 243.6 243.6 243.6-109.3 243.6-243.6S377.9 0 243.6 0zm0 363.9a120.4 120.4 0 1 1 0-240.7 120.4 120.4 0 0 1 0 240.7zM336.5 137.3c-22.4-19.6-51-32.3-82.5-34.6V21.1c53.9 2.5 102.9 24.3 140.2 58.6l-57.7 57.7zM233.1 102.8c-31.5 2.3-60.1 15-82.5 34.6L93 79.7C130.3 45.4 179.3 23.7 233.1 21.1v81.7zM136 152.2c-19.2 22.5-31.4 51.1-33.4 82.4H21c2.1-53.8 23.4-102.7 57.2-140.1l57.8 57.8zM102.9 255.4c2.6 30.9 15.2 59 34.5 81.1l-57.7 57.7c-34-37-55.7-85.4-58.5-138.8h81.7zM152.2 351.1c22.2 18.9 50.2 31 81 33.3v81.7c-53.2-2.5-101.6-23.7-138.7-57.2l57.7-57.8zM254 384.4c30.7-2.3 58.8-14.4 81-33.3l57.7 57.7c-37.1 33.5-85.5 54.7-138.7 57.2v-81.6zM349.8 336.5c19.3-22.1 31.9-50.2 34.5-81.1h81.7c-2.8 53.4-24.5 101.8-58.5 138.8l-57.7-57.7zM384.5 234.6c-2-31.3-14.2-59.9-33.4-82.4l57.7-57.7c33.8 37.4 55.1 86.4 57.2 140.1h-81.6z"/></svg>
+</button>
         <div class="color-picker-info">
             <div class="color-picker-title" data-en="Professional Color Wheel" data-fa="چرخ رنگ حرفه‌ای" data-ar="عجلة الألوان المتقدمة">Professional Color Wheel</div>
             <div class="color-picker-desc" data-en="Advanced HSL color selection" data-fa="انتخاب رنگ پیشرفته HSL" data-ar="اختيار ألوان HSL متقدم">Advanced HSL color selection</div>
@@ -4880,30 +4941,42 @@ if (loginBtn && loginModal) {
     memoryManager.addEventListener(hamburgerMenuBtn, 'click', toggleMenu);
     memoryManager.addEventListener(hamburgerOverlay, 'click', toggleMenu);
 
-// Layer Panel Toggle from Hamburger Menu
 const layersPanelToggle = document.getElementById('layersPanelToggleSwitch');
 if (layersPanelToggle) {
-    memoryManager.addEventListener(layersPanelToggle, 'click', () => {
-            // Close hamburger menu
-            hamburgerPanel.classList.remove('active');
-            hamburgerOverlay.classList.remove('active');
-            // Toggle layers panel
-            const layersPanel = document.getElementById('layersPanel');
-            if (layersPanel && layersPanel.classList.contains('active')) {
-                uiManager.closePanel('layers');
-            } else {
-                uiManager.openPanel('layers');
-            }
-        });
+    // Set initial state based on layers panel
+    const layersPanel = document.getElementById('layersPanel');
+    const isInitiallyActive = layersPanel && (layersPanel.classList.contains('active') || layersPanel.classList.contains('logo-only'));
+    if (isInitiallyActive) {
+        layersPanelToggle.classList.add('active');
     }
-
-    // Layer Panel Collapse Toggle
+    
+    memoryManager.addEventListener(layersPanelToggle, 'click', () => {
+        // Toggle the switch visual state
+        layersPanelToggle.classList.toggle('active');
+        const isNowActive = layersPanelToggle.classList.contains('active');
+        
+        // Close hamburger menu
+        hamburgerPanel.classList.remove('active');
+        hamburgerOverlay.classList.remove('active');
+        
+        // Toggle layers panel based on switch state
+        const layersPanel = document.getElementById('layersPanel');
+        if (layersPanel) {
+            if (isNowActive) {
+                // Switch ON: Open panel in collapsed mode
+                layersPanel.classList.remove('logo-only');
+                layersPanel.classList.add('active', 'collapsed');
+            } else {
+                layersPanel.classList.remove('active', 'collapsed', 'logo-only');
+            }
+        }
+    });
+}
     const layerCollapseBtn = document.getElementById('layerCollapseBtn');
     const layersPanel = document.getElementById('layersPanel');
     if (layerCollapseBtn && layersPanel) {
         memoryManager.addEventListener(layerCollapseBtn, 'click', (e) => {
             e.stopPropagation();
-            // Toggle between collapsed and expanded (not logo-only)
             if(layersPanel.classList.contains('logo-only')){
                 layersPanel.classList.remove('logo-only');
                 layersPanel.classList.add('collapsed');
